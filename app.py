@@ -87,19 +87,33 @@ def main():
 
     # User Inputs
     # ... activity input fields ...
-
     st.subheader("Activity Information")
-    activity_date = st.text_input("Activity Date", value='2023-10-29')
-    start_time = st.text_input("Start Time", value='12:00:00')
-    end_time = st.text_input("End Time", value='12:10:00')
-    activity_type = st.text_input("Type", value='Walking')
-    duration = st.text_input("Duration (seconds)", value='600')
-    distance = st.text_input("Distance (meters)", value='300')
-    calories_burned = st.text_input("Calories Burned", value='20')
-    avg_heart_rate = st.text_input("Average Heart Rate", value='80')
-    peak_heart_rate = st.text_input("Peak Heart Rate", value='90')
-    steps = st.text_input("Steps", value='400')
-    notes = st.text_area("Notes", value='I feel tired and unmotivated.')
+
+    activity_type_options = ["Exercise", "Sleep"]
+    chosen_activity = st.selectbox("Choose Activity Type", activity_type_options)
+
+    if chosen_activity == "Exercise":
+        st.text("Exercise Details:")
+        activity_date = st.text_input("Activity Date", value='2023-10-29')
+        start_time = st.text_input("Start Time", value='12:00:00')
+        end_time = st.text_input("End Time", value='12:10:00')
+        activity_type = st.text_input("Type", value='Walking')
+        duration = st.text_input("Duration (seconds)", value='600')
+        distance = st.text_input("Distance (meters)", value='300')
+        calories_burned = st.text_input("Calories Burned", value='20')
+        avg_heart_rate = st.text_input("Average Heart Rate", value='80')
+        peak_heart_rate = st.text_input("Peak Heart Rate", value='90')
+        steps = st.text_input("Steps", value='400')
+        notes = st.text_area("Notes", value='I feel tired and unmotivated.')
+
+    elif chosen_activity == "Sleep":
+        st.text("Sleep Details:")
+        pressure_intensity = st.slider("Stress Level", min_value=0, max_value=10, value=5)
+        quality_of_sleep = st.slider("Quality of sleep", min_value=0, max_value=10, value=6)
+        sleep_duration = st.text_input("Sleep Duration", value='6.2')
+        sleep_disorder_choice = st.radio("Sleep Disorder", ["Yes", "No"])
+        notes = st.text_area("Notes", value='I feel tired and need to relax during sleep.')
+
 
     choice = st.selectbox("Choose an option", ["Generate a New Song", "Get a Song Suggestion from Spotify"])
 
